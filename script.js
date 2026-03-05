@@ -1,7 +1,10 @@
 window.addEventListener("DOMContentLoaded", () => {
 
-    // typing effect
-    const text = "Full Stack Developer_";
+    /* ==============================
+       Typing Effect
+    ============================== */
+
+    const text = "Full Stack Developer";
     let i = 0;
     const speed = 40;
     const typing = document.querySelector(".typing");
@@ -13,95 +16,92 @@ window.addEventListener("DOMContentLoaded", () => {
             setTimeout(type,speed);
         }
     }
+
     if(typing) type();
 
-// Navbar sliding
-const icons = document.querySelectorAll(".nav-icon");
-const slider = document.querySelector(".slider");
 
-icons.forEach((icon, index) => {
-  icon.addEventListener("click", () => {
+    /* ==============================
+       Navbar Slider
+    ============================== */
 
-    // remove active from all
-    icons.forEach(i => i.classList.remove("active"));
+    const icons = document.querySelectorAll(".nav-icon");
+    const slider = document.querySelector(".slider");
 
-    // add active to clicked
-    icon.classList.add("active");
+    icons.forEach((icon, index) => {
 
-    // move slider
-    slider.style.top = (index * 75) + 20 + "px";
-  });
-});
+        icon.addEventListener("click", () => {
 
+            icons.forEach(i => i.classList.remove("active"));
+            icon.classList.add("active");
 
-// Skills tab switch
-const skillItems = document.querySelectorAll(".skill-item");
-const contents = document.querySelectorAll(".content");
+            // vertical navbar
+            slider.style.top = (index * 75) + 20 + "px";
 
-skillItems.forEach(item => {
-    item.addEventListener("click", () => {
+        });
 
-        skillItems.forEach(i => i.classList.remove("active"));
-        item.classList.add("active");
-
-        contents.forEach(c => c.classList.remove("active"));
-
-        const target = item.getAttribute("data-skill");
-        document.getElementById(target).classList.add("active");
     });
-});
 
-});
 
-// Show default active skill content on load
-window.addEventListener("DOMContentLoaded", () => {
+    /* ==============================
+       Skills Section Tabs
+    ============================== */
+
+    const skillItems = document.querySelectorAll(".skill-item");
+    const contents = document.querySelectorAll(".content");
+
+    skillItems.forEach(item => {
+
+        item.addEventListener("click", () => {
+
+            skillItems.forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
+
+            contents.forEach(c => c.classList.remove("active"));
+
+            const target = item.getAttribute("data-skill");
+            document.getElementById(target).classList.add("active");
+
+        });
+
+    });
+
+
+    /* ==============================
+       Show default skill
+    ============================== */
 
     const activeSkill = document.querySelector(".skill-item.active");
 
-    if (activeSkill) {
+    if(activeSkill){
         const target = activeSkill.getAttribute("data-skill");
-        document.querySelectorAll(".content").forEach(c => {
-            c.classList.remove("active");
-        });
 
+        contents.forEach(c => c.classList.remove("active"));
         document.getElementById(target).classList.add("active");
     }
 
-});
 
-// icon click switch
-document.addEventListener("click", function(e){
+    /* ==============================
+       Skill Icon Description Switch
+    ============================== */
 
-    if(e.target.closest(".icon-box")){
-        const box = e.target.closest(".icon-box");
-        const parent = box.closest(".content");
+    const iconBoxes = document.querySelectorAll(".icon-box");
 
-        parent.querySelectorAll(".icon-box").forEach(i=>i.classList.remove("active"));
-        box.classList.add("active");
+    iconBoxes.forEach(box => {
 
-        const target = box.getAttribute("data-desc");
+        box.addEventListener("click", () => {
 
-        parent.querySelectorAll(".desc").forEach(d=>d.classList.remove("active"));
-        parent.querySelector("#"+target).classList.add("active");
-    }
+            const parent = box.closest(".content");
 
-});
+            parent.querySelectorAll(".icon-box").forEach(i => i.classList.remove("active"));
+            box.classList.add("active");
 
-document.addEventListener("click", function(e){
+            parent.querySelectorAll(".desc").forEach(d => d.classList.remove("active"));
 
-    if(e.target.closest(".icon-box")){
-        const box = e.target.closest(".icon-box");
-        const parent = box.closest(".content");
+            const target = box.getAttribute("data-desc");
+            parent.querySelector("#" + target).classList.add("active");
 
-        parent.querySelectorAll(".icon-box").forEach(i=>i.classList.remove("active"));
-        box.classList.add("active");
-
-        parent.querySelectorAll(".desc").forEach(d=>{
-            d.classList.remove("active");
         });
 
-        const target = box.getAttribute("data-desc");
-        parent.querySelector("#"+target).classList.add("active");
-    }
+    });
 
 });
