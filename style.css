@@ -882,6 +882,11 @@ button:hover {
 
 @media (max-width:768px) {
 
+
+    body {
+        padding-bottom: 90px;
+    }
+
     .navbar {
         position: fixed;
         bottom: 0;
@@ -897,13 +902,15 @@ button:hover {
         align-items: center;
 
         border-radius: 20px 20px 0 0;
-
-        background: rgba(255, 255, 255, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        background: transparent;
         backdrop-filter: blur(20px);
 
         padding: 0;
         gap: 0;
 
+        z-index:1000;
+        box-shadow:0 -5px 20px rgba(0,0,0,0.15);
         transform: none;
     }
 
